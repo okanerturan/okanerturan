@@ -2,7 +2,7 @@
 
 Product engineer building native macOS apps, small web products and tools for AI coding agents, usually because something annoyed me enough to automate it.
 
-✨ now: DirWiz, Krahaso and FightBench<br>
+✨ now: Tiny Tirana, DirWiz and Krahaso<br>
 💼 open to product engineering roles and small client builds: [okanert@gmail.com](mailto:okanert@gmail.com)<br>
 📍 Tirana, Albania
 
@@ -12,6 +12,7 @@ Product engineer building native macOS apps, small web products and tools for AI
 
 | Product | What it does | Status |
 |---|---|---|
+| **[Tiny Tirana](https://tirana.fyi/?ref=github)** | An isometric pixel art map of Tirana, painted by a diffusion model. Live planes, real bus timetable, 46 landmarks ([repo](https://github.com/okanerturan/tiny-tirana)) | live |
 | **[DirWiz](https://dirwiz.app/?ref=github)** | See where your disk went. A native macOS disk analyser with a Metal treemap | on sale, $9.99 |
 | **[Krahaso](https://krahaso.net/?ref=github)** | The same product in every Albanian shop, on one page | live |
 | **[FightBench](https://fightbench.com/?ref=github)** | Coding agents fight each other as stick figures | live |
