@@ -264,11 +264,18 @@ async function loadRecentCommits() {
     const query = encodeURIComponent(`author:${profileUser} merge:false is:public author-date:${range}`);
     let taken = 0;
     for (let page = 1; page <= 10; page++) {
-      const result = await requestGitHub(
-        `/search/commits?q=${query}&sort=author-date&order=desc&per_page=100&page=${page}`,
-        `GitHub commit search ${range} page ${page}`,
-      );
-      if (result.incomplete_results) throw new Error("GitHub commit search returned incomplete results");
+      // Commit search sometimes times out on GitHub's side and says so with incomplete_results
+      // (failed runs 6 and 9 Nov 2026). The same query a few seconds later usually completes.
+      let result;
+      for (let attempt = 1; ; attempt++) {
+        result = await requestGitHub(
+          `/search/commits?q=${query}&sort=author-date&order=desc&per_page=100&page=${page}`,
+          `GitHub commit search ${range} page ${page}`,
+        );
+        if (!result.incomplete_results) break;
+        if (attempt === 4) throw new Error(`GitHub commit search ${range} page ${page} returned incomplete results 4 times`);
+        await new Promise(resolve => setTimeout(resolve, 5000 * 3 ** (attempt - 1)));
+      }
       for (const item of result.items ?? []) {
         if (!item.commit?.author?.date || seen.has(item.sha)) continue;
         seen.add(item.sha);
