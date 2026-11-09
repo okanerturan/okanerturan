@@ -22,11 +22,11 @@ function section(name, nextName) {
   return readme.slice(start, end);
 }
 
-// Products: a table of four shipped products, each with a live site link.
+// Products: a table of five shipped products, each with a live site link.
 const products = section("Products", "More work");
 const productRows = [...products.matchAll(/^\| \*\*\[([^\]]+)\]\((https:\/\/[^)]+)\)\*\* \|/gm)];
-assert(productRows.length === 4, `Expected 4 product rows, found ${productRows.length}`);
-assert(JSON.stringify(productRows.map((row) => row[1])) === JSON.stringify(["DirWiz", "Krahaso", "FightBench", "CropSize"]), "Products must keep the approved order");
+assert(productRows.length === 5, `Expected 5 product rows, found ${productRows.length}`);
+assert(JSON.stringify(productRows.map((row) => row[1])) === JSON.stringify(["Tiny Tirana", "DirWiz", "Krahaso", "FightBench", "CropSize"]), "Products must keep the approved order");
 
 // More work: one grouped line per kind, every link a repository of this account, no repository twice.
 const more = section("More work", "Activity");
